@@ -1,0 +1,20 @@
+﻿<Window x:Class="Baze.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Baze"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="Grad" Content="Grad" HorizontalAlignment="Left" Margin="92,63,0,0" VerticalAlignment="Top" Width="92" Height="28" Click="Grad_Click"  />
+        <Button x:Name="Pacijent" Content="Pacijent" HorizontalAlignment="Left" Margin="92,122,0,0" VerticalAlignment="Top" Width="92" Click="Pacijent_Click"/>
+        <Button x:Name="Bolnica" Content="Bolnica" HorizontalAlignment="Left" Margin="92,179,0,0" VerticalAlignment="Top" Width="92" Height="25" Click="Bolnica_Click"/>
+        <Button x:Name="Direktor" Content="Direktor" HorizontalAlignment="Left" Margin="92,232,0,0" VerticalAlignment="Top" Width="92" Click="Direktor_Click"/>
+        <Button x:Name="Spremacica" Content="Spremacica" HorizontalAlignment="Left" Margin="320,64,0,0" VerticalAlignment="Top" Width="92" Height="27" Click="Spremacica_Click"/>
+        <Button x:Name="Sestra" Content="Sestra" HorizontalAlignment="Left" Margin="320,122,0,0" VerticalAlignment="Top" Width="92" Height="33" Click="Sestra_Click"/>
+        <Button x:Name="Specijalista" Content="Specijalista" HorizontalAlignment="Left" Margin="320,179,0,0" VerticalAlignment="Top" Width="92" Height="28" Click="Specijalista_Click" />
+        <Button x:Name="Doktor" Content="Doktor" HorizontalAlignment="Left" Margin="320,227,0,0" VerticalAlignment="Top" Width="92" Height="28" Click="Doktor_Click" />
+
+    </Grid>
+</Window>

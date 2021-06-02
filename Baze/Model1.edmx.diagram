@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7a4d85b97eb24bf5a8ae8f987d770309" Name="Diagram1" >
+        <EntityTypeShape EntityType="Model1.Grad" Width="1.5" PointX="1.125" PointY="2" />
+        <EntityTypeShape EntityType="Model1.Pacijent" Width="1.5" PointX="8" PointY="1.5" />
+        <EntityTypeShape EntityType="Model1.Zaposleni" Width="1.5" PointX="1.125" PointY="4.875" />
+        <EntityTypeShape EntityType="Model1.Bolnica" Width="1.5" PointX="8.125" PointY="5.375" />
+        <EntityTypeShape EntityType="Model1.Direktor" Width="1.5" PointX="8.25" PointY="8.375" />
+        <AssociationConnector Association="Model1.ZaposleniBolnica" />
+        <AssociationConnector Association="Model1.BolnicaDirektor" />
+        <EntityTypeShape EntityType="Model1.Spremacica" Width="1.5" PointX="0.5" PointY="8.375" />
+        <InheritanceConnector EntityType="Model1.Spremacica" />
+        <EntityTypeShape EntityType="Model1.Sestra" Width="1.5" PointX="2.25" PointY="8.375" />
+        <EntityTypeShape EntityType="Model1.Specijalista" Width="1.5" PointX="4.125" PointY="8.375" />
+        <EntityTypeShape EntityType="Model1.Doktor" Width="1.5" PointX="6" PointY="8.375" />
+        <InheritanceConnector EntityType="Model1.Sestra" />
+        <InheritanceConnector EntityType="Model1.Specijalista" />
+        <InheritanceConnector EntityType="Model1.Doktor" />
+        <AssociationConnector Association="Model1.GradBolnica" />
+        <EntityTypeShape EntityType="Model1.Hospitalizovani" Width="1.5" PointX="4.5" PointY="2" />
+        <EntityTypeShape EntityType="Model1.Pregleda" Width="1.5" PointX="10.5" PointY="3.125" />
+        <AssociationConnector Association="Model1.PacijentDoktor" />
+        <AssociationConnector Association="Model1.PacijentPregleda" />
+        <AssociationConnector Association="Model1.SpecijalistaPregleda" />
+        <AssociationConnector Association="Model1.GradPacijent" />
+        <AssociationConnector Association="Model1.BolnicaPacijent" />
+        <AssociationConnector Association="Model1.HospitalizovaniPacijent" />
+        <AssociationConnector Association="Model1.HospitalizovaniSestra" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

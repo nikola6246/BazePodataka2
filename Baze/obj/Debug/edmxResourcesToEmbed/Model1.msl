@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="Grads">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Grad)">
+        <MappingFragment StoreEntitySet="Grads">
+          <ScalarProperty Name="PostanskiBr" ColumnName="PostanskiBr" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pacijents">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Pacijent)">
+        <MappingFragment StoreEntitySet="Pacijents">
+          <ScalarProperty Name="JmbgPac" ColumnName="JmbgPac" />
+          <ScalarProperty Name="ImePac" ColumnName="ImePac" />
+          <ScalarProperty Name="PrezPac" ColumnName="PrezPac" />
+          <ScalarProperty Name="PregledaId" ColumnName="PregledaId" />
+          <ScalarProperty Name="GradPostanskiBr" ColumnName="GradPostanskiBr" />
+          <ScalarProperty Name="BolnicaBolnicaId" ColumnName="BolnicaBolnicaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zaposlenis">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Zaposleni)">
+        <MappingFragment StoreEntitySet="Zaposlenis">
+          <ScalarProperty Name="JmbgZap" ColumnName="JmbgZap" />
+          <ScalarProperty Name="ImeZap" ColumnName="ImeZap" />
+          <ScalarProperty Name="PrezZap" ColumnName="PrezZap" />
+          <ScalarProperty Name="PlataZap" ColumnName="PlataZap" />
+          <ScalarProperty Name="GodineZap" ColumnName="GodineZap" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Doktor)">
+        <MappingFragment StoreEntitySet="Zaposlenis_Doktor">
+          <ScalarProperty Name="JmbgZap" ColumnName="JmbgZap" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Specijalista)">
+        <MappingFragment StoreEntitySet="Zaposlenis_Specijalista">
+          <ScalarProperty Name="JmbgZap" ColumnName="JmbgZap" />
+          <ScalarProperty Name="Oblast_Spec" ColumnName="Oblast_Spec" />
+          <ScalarProperty Name="PregledaId" ColumnName="PregledaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Sestra)">
+        <MappingFragment StoreEntitySet="Zaposlenis_Sestra">
+          <ScalarProperty Name="JmbgZap" ColumnName="JmbgZap" />
+          <ScalarProperty Name="brojDezurstava" ColumnName="brojDezurstava" />
+          <ScalarProperty Name="HospitalizovaniId" ColumnName="HospitalizovaniId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Spremacica)">
+        <MappingFragment StoreEntitySet="Zaposlenis_Spremacica">
+          <ScalarProperty Name="JmbgZap" ColumnName="JmbgZap" />
+          <ScalarProperty Name="brojCiscenja" ColumnName="brojCiscenja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bolnicas">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Bolnica)">
+        <MappingFragment StoreEntitySet="Bolnicas">
+          <ScalarProperty Name="BolnicaId" ColumnName="BolnicaId" />
+          <ScalarProperty Name="NazivBolnice" ColumnName="NazivBolnice" />
+          <ScalarProperty Name="GradPostanskiBr" ColumnName="GradPostanskiBr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Direktors">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Direktor)">
+        <MappingFragment StoreEntitySet="Direktors">
+          <ScalarProperty Name="JmbgDir" ColumnName="JmbgDir" />
+          <ScalarProperty Name="ImeDir" ColumnName="ImeDir" />
+          <ScalarProperty Name="PrezDir" ColumnName="PrezDir" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hospitalizovanis">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Hospitalizovani)">
+        <MappingFragment StoreEntitySet="Hospitalizovanis">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Dijagnoza" ColumnName="Dijagnoza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pregledas">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Pregleda)">
+        <MappingFragment StoreEntitySet="Pregledas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PacijentJmbgPac" ColumnName="PacijentJmbgPac" />
+          <ScalarProperty Name="SpecijalistaJmbgZap" ColumnName="SpecijalistaJmbgZap" />
+          <ScalarProperty Name="Anamneza" ColumnName="Anamneza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ZaposleniBolnica" TypeName="Model1.ZaposleniBolnica" StoreEntitySet="ZaposleniBolnica">
+      <EndProperty Name="Zaposleni">
+        <ScalarProperty Name="JmbgZap" ColumnName="Zaposlenis_JmbgZap" />
+      </EndProperty>
+      <EndProperty Name="Bolnica">
+        <ScalarProperty Name="BolnicaId" ColumnName="Bolnicas_BolnicaId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BolnicaDirektor" TypeName="Model1.BolnicaDirektor" StoreEntitySet="Direktors">
+      <EndProperty Name="Bolnica">
+        <ScalarProperty Name="BolnicaId" ColumnName="Bolnica_BolnicaId" />
+      </EndProperty>
+      <EndProperty Name="Direktor">
+        <ScalarProperty Name="JmbgDir" ColumnName="JmbgDir" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PacijentDoktor" TypeName="Model1.PacijentDoktor" StoreEntitySet="Pacijents">
+      <EndProperty Name="Doktor">
+        <ScalarProperty Name="JmbgZap" ColumnName="Doktor_JmbgZap" />
+      </EndProperty>
+      <EndProperty Name="Pacijent">
+        <ScalarProperty Name="JmbgPac" ColumnName="JmbgPac" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HospitalizovaniPacijent" TypeName="Model1.HospitalizovaniPacijent" StoreEntitySet="Hospitalizovanis">
+      <EndProperty Name="Pacijent">
+        <ScalarProperty Name="JmbgPac" ColumnName="Pacijent_JmbgPac" />
+      </EndProperty>
+      <EndProperty Name="Hospitalizovani">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HospitalizovaniSestra" TypeName="Model1.HospitalizovaniSestra" StoreEntitySet="Hospitalizovanis">
+      <EndProperty Name="Sestra">
+        <ScalarProperty Name="JmbgZap" ColumnName="Sestra_JmbgZap" />
+      </EndProperty>
+      <EndProperty Name="Hospitalizovani">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

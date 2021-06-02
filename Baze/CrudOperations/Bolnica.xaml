@@ -1,0 +1,46 @@
+﻿<Window x:Class="Baze.CrudOperations.Bolnica"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Baze.CrudOperations"
+        mc:Ignorable="d"
+        Title="Bolnica" Height="450" Width="800">
+    <Grid>
+        <Label Content="Id" HorizontalAlignment="Left" Margin="62,68,0,0" VerticalAlignment="Top" Width="87"/>
+        <TextBox x:Name="IdTextBox" HorizontalAlignment="Left" Height="23" Margin="241,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Naziv" HorizontalAlignment="Left" Margin="62,123,0,0" VerticalAlignment="Top" Width="66"/>
+        <TextBox x:Name="NazivTextBox" HorizontalAlignment="Left" Height="23" Margin="241,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <Label Content="Postanski broj grada" HorizontalAlignment="Left" Margin="62,184,0,0" VerticalAlignment="Top" Width="118"/>
+        <ComboBox x:Name="PostanskiBrComboBox" ItemsSource="{Binding Grad}" SelectedValuePath="PostanskiBr" HorizontalAlignment="Left" Margin="241,184,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <DataGrid x:Name="BolniceList" HorizontalAlignment="Left" Height="141" Margin="85,261,0,0" VerticalAlignment="Top" Width="664">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="Id" Header="Id" Binding="{Binding BolnicaId}" Width="120"/>
+                <DataGridTextColumn x:Name="Naziv" Header="Naziv" Binding="{Binding NazivBolnice}" Width="120"/>
+                <DataGridTextColumn x:Name="PostanskiBr" Header="Postanski broj grada" Binding="{Binding GradPostanskiBr}" Width="120"/>
+
+
+                <DataGridTemplateColumn Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="EDIT" x:Name="ButtonEdit" Click="ButtonEdit_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="DELETE" x:Name="ButtonDelete" Click="ButtonDelete_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="495,68,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="641,68,0,0" VerticalAlignment="Top" Width="75"/>
+
+
+    </Grid>
+</Window>
