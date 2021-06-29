@@ -70,13 +70,14 @@ namespace Baze.CrudOperations
             if (dev != null)
             {
 
+                
                 JmbgTextBox.Text = dev.JmbgPac.ToString();
                 //pacijent.JmbgPac = Convert.ToInt32(JmbgTextBox.Text);
                 ImeTextBox.Text = dev.ImePac;
                 PrezimeTextBox.Text = dev.PrezPac;
                 PostanskiBrCombo.SelectedItem = dev.GradPostanskiBr;
                 IdBolniceCombo.SelectedItem = dev.BolnicaBolnicaId;
-                //JmbgDoktoraCombo.SelectedItem = dev.Doktor.JmbgZap;
+                JmbgDoktoraCombo.SelectedItem = dev.DoktorJmbgZap;
                 //JmbgDoktoraCombo.SelectedItem = dev.DoktorId;
 
 
@@ -110,14 +111,7 @@ namespace Baze.CrudOperations
                 pacijent.ImePac = ImeTextBox.Text;
                 pacijent.PrezPac = PrezimeTextBox.Text;
 
-                //pacijent.DoktorId = ((Baze.Zaposleni)JmbgDoktoraCombo.SelectedItem).JmbgZap;
                 pacijent.DoktorJmbgZap = ((Baze.Zaposleni)JmbgDoktoraCombo.SelectedItem).JmbgZap;
-                //Baze.Doktor doktor = new Baze.Doktor();
-                //doktor = doktorRepository.GetDoktorById(pacijent.DoktorId);
-                //pacijent.Doktor = doktor;
-                //pacijent.Doktor = doktorRepository.GetDoktorById(pacijent.DoktorId);
-                //pacijent.Doktor = (Baze.Doktor)zaposleniRepository.GetZaposlenById(pacijent.DoktorId);
-                //pacijent.Doktor = new Baze.Doktor();
                 pacijent.BolnicaBolnicaId = Convert.ToInt32(((Baze.Bolnica)IdBolniceCombo.SelectedItem).BolnicaId);
                 pacijent.GradPostanskiBr = Convert.ToInt32(((Baze.Grad)PostanskiBrCombo.SelectedItem).PostanskiBr);
                 _repository.AddPacijent(pacijent);
@@ -128,8 +122,7 @@ namespace Baze.CrudOperations
                 pacijent.JmbgPac = Convert.ToInt32(JmbgTextBox.Text);
                 pacijent.ImePac = ImeTextBox.Text;
                 pacijent.PrezPac = PrezimeTextBox.Text;
-                //pacijent.Doktor.JmbgZap = Convert.ToInt32((JmbgDoktoraCombo.SelectedItem).ToString());
-                //pacijent.DoktorId = ((Baze.Zaposleni)JmbgDoktoraCombo.SelectedItem).JmbgZap;
+
                 pacijent.DoktorJmbgZap = ((Baze.Zaposleni)JmbgDoktoraCombo.SelectedItem).JmbgZap;
                 pacijent.BolnicaBolnicaId = Convert.ToInt32(((Baze.Bolnica)IdBolniceCombo.SelectedItem).BolnicaId);
                 pacijent.GradPostanskiBr = Convert.ToInt32(((Baze.Grad)PostanskiBrCombo.SelectedItem).PostanskiBr);

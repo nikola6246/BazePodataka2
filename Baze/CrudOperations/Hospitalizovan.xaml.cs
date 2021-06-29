@@ -69,7 +69,7 @@ namespace Baze.CrudOperations
                 JmbgPacTextBox.SelectedItem = dev.PacijentJmbgPac;
                 JmbgSestreextBox.SelectedItem = dev.SestraJmbgZap;
 
-                this.editId = Convert.ToInt32(dev.Dijagnoza);//??
+                this.editId = (int)dev.Id;//??
             }
         }
 
@@ -110,6 +110,21 @@ namespace Baze.CrudOperations
             DijagnozaTextBox.Text = String.Empty;
             JmbgPacTextBox.Text = String.Empty;
             JmbgSestreextBox.Text = String.Empty;
+
+        }
+
+        private void ButtonEdit_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonEdit_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonDelete_Click_1(object sender, RoutedEventArgs e)
+        {
 
         }
     }

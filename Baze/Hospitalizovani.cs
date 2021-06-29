@@ -12,8 +12,11 @@ namespace Baze
     using System;
     using System.Collections.Generic;
     
+    
+
     public partial class Hospitalizovani
-    {
+    { 
+
         public decimal Id { get; set; }
         public string Dijagnoza { get; set; }
         public decimal PacijentJmbgPac { get; set; }

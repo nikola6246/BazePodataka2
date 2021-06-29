@@ -64,7 +64,7 @@ namespace Baze.CrudOperations
 
             if (dev != null)
             {
-
+                IdTextBox.Text = dev.BolnicaId.ToString();
                 PostanskiBrComboBox.Text = dev.GradPostanskiBr.ToString();
                 NazivTextBox.Text = dev.NazivBolnice;
 

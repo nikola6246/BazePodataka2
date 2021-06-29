@@ -16,12 +16,12 @@
         <TextBox x:Name="PrezimeTextBox" HorizontalAlignment="Left" Height="23" Margin="270,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="IdBolniceCombo" ItemsSource="{Binding Bolnice}" SelectedValuePath="BolnicaId" DisplayMemberPath="NazivBolnice" HorizontalAlignment="Left" Margin="270,197,0,0" VerticalAlignment="Top" Width="120"/>
 
-        <DataGrid x:Name="DirektoriList" HorizontalAlignment="Left" Height="141" Margin="85,261,0,0" VerticalAlignment="Top" Width="664">
+        <DataGrid x:Name="DirektoriList" HorizontalAlignment="Left" Height="141" Margin="85,261,0,0" VerticalAlignment="Top" Width="664" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="JmbgDir" Header="Jmbg" Binding="{Binding JmbgDir}" Width="120"/>
                 <DataGridTextColumn x:Name="ImeDir" Header="Ime" Binding="{Binding ImeDir}" Width="120"/>
                 <DataGridTextColumn x:Name="PrezDir" Header="Prezime" Binding="{Binding PrezDir}" Width="120"/>
-                <DataGridTextColumn x:Name="IdBolnice" Header="Id Bolnice" Binding="{Binding BolnicaId}" Width="120"/>
+                <DataGridTextColumn x:Name="IdBolnice" Header="Id Bolnice" Binding="{Binding BolnicaBolnicaId}" Width="120"/>
 
                 <DataGridTemplateColumn Width="80">
                     <DataGridTemplateColumn.CellTemplate>

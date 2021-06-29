@@ -21,6 +21,9 @@ namespace Baze.Repository.Repos
 
         public void AddHospitalizovan(Hospitalizovani hospitalizovan)
         {
+            Random r = new Random();
+            hospitalizovan.Id += r.Next() % 40;
+
             db.Hospitalizovanis.Add(hospitalizovan);
             db.SaveChanges();
         }

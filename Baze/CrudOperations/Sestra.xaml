@@ -20,7 +20,7 @@
         <TextBox x:Name="GodineTextBox" HorizontalAlignment="Left" Height="23" Margin="225,186,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="BrojDezurstavaTextBox" HorizontalAlignment="Left" Height="23" Margin="225,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
 
-        <DataGrid x:Name="SestreList" HorizontalAlignment="Left" Height="141" Margin="10,292,-0.4,-13" VerticalAlignment="Top" Width="784">
+        <DataGrid x:Name="SestreList" HorizontalAlignment="Left" Height="141" Margin="10,292,-0.4,-13" VerticalAlignment="Top" Width="784" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="Jmbg" Header="Jmbg" Binding="{Binding JmbgZap}" Width="120"/>
                 <DataGridTextColumn x:Name="Ime" Header="Ime" Binding="{Binding ImeZap}" Width="120"/>
@@ -28,7 +28,7 @@
                 <DataGridTextColumn x:Name="GradPostanskiBr" Header="Plata" Binding="{Binding PlataZap}" Width="120"/>
                 <DataGridTextColumn x:Name="GodineZaposlenja" Header="Godine zaposljenja" Binding="{Binding GodineZap}" Width="120"/>
                 <DataGridTextColumn x:Name="BrojDezurstava" Header="Broj dezurstava" Binding="{Binding brojDezurstava}" Width="120"/>
-                <DataGridTextColumn x:Name="Hospitalizovani" Header="Id hospitalizovanog" Binding="{Binding HospitalizovaniId}" Width="120"/>
+                <!--<DataGridTextColumn x:Name="Hospitalizovani" Header="Id hospitalizovanog" Binding="{Binding HospitalizovaniId}" Width="120"/>-->
 
                 <DataGridTemplateColumn Width="80">
                     <DataGridTemplateColumn.CellTemplate>

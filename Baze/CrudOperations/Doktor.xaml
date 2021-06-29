@@ -22,7 +22,7 @@
         <!--<TextBox x:Name="PacijentiTextBox" HorizontalAlignment="Left" Height="23" Margin="225,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>-->
         <ComboBox x:Name="IdHospitalizovanogCombo" ItemsSource="{Binding Hospitalizovani}" SelectedValuePath="Id" HorizontalAlignment="Left" Margin="225,261,0,0" VerticalAlignment="Top" Width="120"/>
 
-        <DataGrid x:Name="DoktoriList" HorizontalAlignment="Left" Height="141" Margin="10,292,-0.4,-13" VerticalAlignment="Top" Width="784">
+        <DataGrid x:Name="DoktoriList" HorizontalAlignment="Left" Height="141" Margin="10,292,-0.4,-13" VerticalAlignment="Top" Width="784" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="Jmbg" Header="Jmbg" Binding="{Binding JmbgZap}" Width="120"/>
                 <DataGridTextColumn x:Name="Ime" Header="Ime" Binding="{Binding ImeZap}" Width="120"/>

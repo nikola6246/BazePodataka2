@@ -55,9 +55,10 @@ namespace Baze.CrudOperations
             if (dev != null)
             {
 
+                JmbgTextBox.Text = dev.JmbgDir.ToString();
                 ImeTextBox.Text = dev.ImeDir.ToString();
                 PrezimeTextBox.Text = dev.PrezDir.ToString();
-                //IdBolniceCombo.SelectedItem = dev.BolnicaId.ToString();
+                IdBolniceCombo.SelectedItem = dev.BolnicaBolnicaId.ToString();
 
 
                 this.editId = (int)dev.JmbgDir;//??
