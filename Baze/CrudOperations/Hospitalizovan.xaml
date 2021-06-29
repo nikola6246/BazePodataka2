@@ -7,17 +7,38 @@
         mc:Ignorable="d"
         Title="Hospitalizovan" Height="450" Width="800">
     <Grid>
-        <Label Content="Id" HorizontalAlignment="Left" Margin="47,62,0,0" VerticalAlignment="Top" Width="101"/>
         <Label Content="Dijagnoza" HorizontalAlignment="Left" Margin="47,107,0,0" VerticalAlignment="Top" Width="101"/>
         <Label Content="Jmbg pacijenta" HorizontalAlignment="Left" Margin="47,154,0,0" VerticalAlignment="Top" Width="101"/>
         <Label Content="Jmbg sestre" HorizontalAlignment="Left" Margin="47,199,0,0" VerticalAlignment="Top" Width="101"/>
-        <TextBox x:Name="IdTextBox" HorizontalAlignment="Left" Height="23" Margin="279,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="DijagnozaTextBox" HorizontalAlignment="Left" Height="23" Margin="279,111,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="JmbgPacTextBox" ItemsSource="{Binding Pacijent}" SelectedValuePath="JmbgPac" HorizontalAlignment="Left" Margin="279,157,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="JmbgSestreextBox" ItemsSource="{Binding Sestra}" SelectedValuePath="JmbgZap" HorizontalAlignment="Left" Margin="279,199,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="514,48,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="633,47,0,0" VerticalAlignment="Top" Width="75"/>
+        <ComboBox x:Name="JmbgPacTextBox" ItemsSource="{Binding Pacijenti}" DisplayMemberPath="ImePac" SelectedValuePath="JmbgPac" HorizontalAlignment="Left" Margin="279,157,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="JmbgSestreextBox" ItemsSource="{Binding Sestre}" DisplayMemberPath="ImeZap" SelectedValuePath="JmbgZap" HorizontalAlignment="Left" Margin="279,199,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="514,48,0,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click"/>
+        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="633,47,0,0" VerticalAlignment="Top" Width="75" Click="CancelButton_Click"/>
 
+        <DataGrid x:Name="HospitalizovaniList" HorizontalAlignment="Left" Height="141" Margin="85,261,0,0" VerticalAlignment="Top" Width="679" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="Dijagnoza" Header="Dijagnoza" Binding="{Binding Dijagnoza}" Width="120"/>
+                <DataGridTextColumn x:Name="JmbgPacijenta" Header="Jmbg pacijenta" Binding="{Binding PacijentJmbgPac}" Width="120"/>
+                <DataGridTextColumn x:Name="JmbgSestre" Header="Jmbg sestre" Binding="{Binding SestraJmbgZap}" Width="120"/>
+
+                <DataGridTemplateColumn Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="EDIT" x:Name="ButtonEdit"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="DELETE" x:Name="ButtonDelete"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
 
 
     </Grid>

@@ -10,20 +10,12 @@
       <End Role="Zaposleni" EntitySet="Zaposlenis" />
       <End Role="Bolnica" EntitySet="Bolnicas" />
     </AssociationSet>
-    <AssociationSet Name="BolnicaDirektor" Association="Model1.BolnicaDirektor">
-      <End Role="Bolnica" EntitySet="Bolnicas" />
-      <End Role="Direktor" EntitySet="Direktors" />
-    </AssociationSet>
     <AssociationSet Name="GradBolnica" Association="Model1.GradBolnica">
       <End Role="Grad" EntitySet="Grads" />
       <End Role="Bolnica" EntitySet="Bolnicas" />
     </AssociationSet>
     <EntitySet Name="Hospitalizovanis" EntityType="Model1.Hospitalizovani" />
     <EntitySet Name="Pregledas" EntityType="Model1.Pregleda" />
-    <AssociationSet Name="PacijentDoktor" Association="Model1.PacijentDoktor">
-      <End Role="Pacijent" EntitySet="Pacijents" />
-      <End Role="Doktor" EntitySet="Zaposlenis" />
-    </AssociationSet>
     <AssociationSet Name="PacijentPregleda" Association="Model1.PacijentPregleda">
       <End Role="Pacijent" EntitySet="Pacijents" />
       <End Role="Pregleda" EntitySet="Pregledas" />
@@ -40,6 +32,14 @@
       <End Role="Bolnica" EntitySet="Bolnicas" />
       <End Role="Pacijent" EntitySet="Pacijents" />
     </AssociationSet>
+    <AssociationSet Name="DoktorPacijent" Association="Model1.DoktorPacijent">
+      <End Role="Doktor" EntitySet="Zaposlenis" />
+      <End Role="Pacijent" EntitySet="Pacijents" />
+    </AssociationSet>
+    <AssociationSet Name="DirektorBolnica" Association="Model1.DirektorBolnica">
+      <End Role="Direktor" EntitySet="Direktors" />
+      <End Role="Bolnica" EntitySet="Bolnicas" />
+    </AssociationSet>
     <AssociationSet Name="HospitalizovaniPacijent" Association="Model1.HospitalizovaniPacijent">
       <End Role="Hospitalizovani" EntitySet="Hospitalizovanis" />
       <End Role="Pacijent" EntitySet="Pacijents" />
@@ -53,8 +53,8 @@
     <Key>
       <PropertyRef Name="PostanskiBr" />
     </Key>
-    <Property Name="PostanskiBr" Type="Decimal" Nullable="false" />
-    <Property Name="Naziv" Type="String" Nullable="false" />
+    <Property Name="PostanskiBr" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Naziv" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Bolnicas" Relationship="Model1.GradBolnica" FromRole="Grad" ToRole="Bolnica" />
     <NavigationProperty Name="Pacijents" Relationship="Model1.GradPacijent" FromRole="Grad" ToRole="Pacijent" />
   </EntityType>
@@ -62,73 +62,71 @@
     <Key>
       <PropertyRef Name="JmbgPac" />
     </Key>
-    <Property Name="JmbgPac" Type="Decimal" Nullable="false" />
-    <Property Name="ImePac" Type="String" Nullable="false" />
-    <Property Name="PrezPac" Type="String" Nullable="false" />
+    <Property Name="JmbgPac" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="ImePac" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PrezPac" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="PregledaId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Doktor" Relationship="Model1.PacijentDoktor" FromRole="Pacijent" ToRole="Doktor" />
     <NavigationProperty Name="Pregledas" Relationship="Model1.PacijentPregleda" FromRole="Pacijent" ToRole="Pregleda" />
     <NavigationProperty Name="Grad" Relationship="Model1.GradPacijent" FromRole="Pacijent" ToRole="Grad" />
-    <Property Name="GradPostanskiBr" Type="Decimal" Nullable="false" />
+    <Property Name="GradPostanskiBr" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <NavigationProperty Name="Bolnica" Relationship="Model1.BolnicaPacijent" FromRole="Pacijent" ToRole="Bolnica" />
-    <Property Name="BolnicaBolnicaId" Type="Decimal" Nullable="false" />
+    <Property Name="BolnicaBolnicaId" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <NavigationProperty Name="Doktor" Relationship="Model1.DoktorPacijent" FromRole="Pacijent" ToRole="Doktor" />
+    <Property Name="DoktorJmbgZap" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <NavigationProperty Name="Hospitalizovanis" Relationship="Model1.HospitalizovaniPacijent" FromRole="Pacijent" ToRole="Hospitalizovani" />
   </EntityType>
   <EntityType Name="Zaposleni">
     <Key>
       <PropertyRef Name="JmbgZap" />
     </Key>
-    <Property Name="JmbgZap" Type="Decimal" Nullable="false" />
-    <Property Name="ImeZap" Type="String" Nullable="false" />
-    <Property Name="PrezZap" Type="String" Nullable="false" />
-    <Property Name="PlataZap" Type="String" Nullable="false" />
-    <Property Name="GodineZap" Type="String" Nullable="false" />
+    <Property Name="JmbgZap" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="ImeZap" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PrezZap" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PlataZap" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="GodineZap" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Bolnicas" Relationship="Model1.ZaposleniBolnica" FromRole="Zaposleni" ToRole="Bolnica" />
   </EntityType>
   <EntityType Name="Bolnica">
     <Key>
       <PropertyRef Name="BolnicaId" />
     </Key>
-    <Property Name="BolnicaId" Type="Decimal" Nullable="false" />
-    <Property Name="NazivBolnice" Type="String" Nullable="false" />
+    <Property Name="BolnicaId" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="NazivBolnice" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Zaposlenis" Relationship="Model1.ZaposleniBolnica" FromRole="Bolnica" ToRole="Zaposleni" />
-    <NavigationProperty Name="Direktor" Relationship="Model1.BolnicaDirektor" FromRole="Bolnica" ToRole="Direktor" />
     <NavigationProperty Name="Grad" Relationship="Model1.GradBolnica" FromRole="Bolnica" ToRole="Grad" />
-    <Property Name="GradPostanskiBr" Type="Decimal" Nullable="false" />
+    <Property Name="GradPostanskiBr" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <NavigationProperty Name="Pacijents" Relationship="Model1.BolnicaPacijent" FromRole="Bolnica" ToRole="Pacijent" />
+    <NavigationProperty Name="Direktors" Relationship="Model1.DirektorBolnica" FromRole="Bolnica" ToRole="Direktor" />
   </EntityType>
   <EntityType Name="Direktor">
     <Key>
       <PropertyRef Name="JmbgDir" />
     </Key>
-    <Property Name="JmbgDir" Type="Decimal" Nullable="false" />
-    <Property Name="ImeDir" Type="String" Nullable="false" />
-    <Property Name="PrezDir" Type="String" Nullable="false" />
-    <NavigationProperty Name="Bolnica" Relationship="Model1.BolnicaDirektor" FromRole="Direktor" ToRole="Bolnica" />
+    <Property Name="JmbgDir" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="ImeDir" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PrezDir" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Bolnica" Relationship="Model1.DirektorBolnica" FromRole="Direktor" ToRole="Bolnica" />
+    <Property Name="BolnicaBolnicaId" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <Association Name="ZaposleniBolnica">
     <End Type="Model1.Zaposleni" Role="Zaposleni" Multiplicity="*" />
     <End Type="Model1.Bolnica" Role="Bolnica" Multiplicity="*" />
   </Association>
-  <Association Name="BolnicaDirektor">
-    <End Type="Model1.Bolnica" Role="Bolnica" Multiplicity="1" />
-    <End Type="Model1.Direktor" Role="Direktor" Multiplicity="0..1" />
-  </Association>
   <EntityType Name="Spremacica" BaseType="Model1.Zaposleni">
-    <Property Name="brojCiscenja" Type="String" Nullable="false" />
+    <Property Name="brojCiscenja" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
   </EntityType>
   <EntityType Name="Sestra" BaseType="Model1.Zaposleni">
-    <Property Name="brojDezurstava" Type="String" Nullable="false" />
+    <Property Name="brojDezurstava" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="HospitalizovaniId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Hospitalizovanis" Relationship="Model1.HospitalizovaniSestra" FromRole="Sestra" ToRole="Hospitalizovani" />
   </EntityType>
   <EntityType Name="Specijalista" BaseType="Model1.Zaposleni">
-    <Property Name="Oblast_Spec" Type="String" Nullable="false" />
+    <Property Name="Oblast_Spec" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="PregledaId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Pregledas" Relationship="Model1.SpecijalistaPregleda" FromRole="Specijalista" ToRole="Pregleda" />
   </EntityType>
   <EntityType Name="Doktor" BaseType="Model1.Zaposleni">
-    <NavigationProperty Name="Pacijents" Relationship="Model1.PacijentDoktor" FromRole="Doktor" ToRole="Pacijent" />
+    <NavigationProperty Name="Pacijents" Relationship="Model1.DoktorPacijent" FromRole="Doktor" ToRole="Pacijent" />
   </EntityType>
   <Association Name="GradBolnica">
     <End Type="Model1.Grad" Role="Grad" Multiplicity="1" />
@@ -146,10 +144,12 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Decimal" Nullable="false" />
+    <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Dijagnoza" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Pacijent" Relationship="Model1.HospitalizovaniPacijent" FromRole="Hospitalizovani" ToRole="Pacijent" />
+    <Property Name="PacijentJmbgPac" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <NavigationProperty Name="Sestra" Relationship="Model1.HospitalizovaniSestra" FromRole="Hospitalizovani" ToRole="Sestra" />
-    <Property Name="Dijagnoza" Type="String" Nullable="false" />
+    <Property Name="SestraJmbgZap" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Pregleda">
     <Key>
@@ -157,15 +157,11 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Pacijent" Relationship="Model1.PacijentPregleda" FromRole="Pregleda" ToRole="Pacijent" />
-    <Property Name="PacijentJmbgPac" Type="Decimal" Nullable="false" />
+    <Property Name="PacijentJmbgPac" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <NavigationProperty Name="Specijalista" Relationship="Model1.SpecijalistaPregleda" FromRole="Pregleda" ToRole="Specijalista" />
-    <Property Name="SpecijalistaJmbgZap" Type="Decimal" Nullable="false" />
-    <Property Name="Anamneza" Type="String" Nullable="false" />
+    <Property Name="SpecijalistaJmbgZap" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Anamneza" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
   </EntityType>
-  <Association Name="PacijentDoktor">
-    <End Type="Model1.Pacijent" Role="Pacijent" Multiplicity="*" />
-    <End Type="Model1.Doktor" Role="Doktor" Multiplicity="1" />
-  </Association>
   <Association Name="PacijentPregleda">
     <End Type="Model1.Pacijent" Role="Pacijent" Multiplicity="1" />
     <End Type="Model1.Pregleda" Role="Pregleda" Multiplicity="*" />
@@ -214,12 +210,52 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="DoktorPacijent">
+    <End Type="Model1.Doktor" Role="Doktor" Multiplicity="1" />
+    <End Type="Model1.Pacijent" Role="Pacijent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doktor">
+        <PropertyRef Name="JmbgZap" />
+      </Principal>
+      <Dependent Role="Pacijent">
+        <PropertyRef Name="DoktorJmbgZap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DirektorBolnica">
+    <End Type="Model1.Direktor" Role="Direktor" Multiplicity="*" />
+    <End Type="Model1.Bolnica" Role="Bolnica" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Bolnica">
+        <PropertyRef Name="BolnicaId" />
+      </Principal>
+      <Dependent Role="Direktor">
+        <PropertyRef Name="BolnicaBolnicaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="HospitalizovaniPacijent">
     <End Type="Model1.Hospitalizovani" Role="Hospitalizovani" Multiplicity="*" />
     <End Type="Model1.Pacijent" Role="Pacijent" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Pacijent">
+        <PropertyRef Name="JmbgPac" />
+      </Principal>
+      <Dependent Role="Hospitalizovani">
+        <PropertyRef Name="PacijentJmbgPac" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
   <Association Name="HospitalizovaniSestra">
     <End Type="Model1.Hospitalizovani" Role="Hospitalizovani" Multiplicity="*" />
     <End Type="Model1.Sestra" Role="Sestra" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Sestra">
+        <PropertyRef Name="JmbgZap" />
+      </Principal>
+      <Dependent Role="Hospitalizovani">
+        <PropertyRef Name="SestraJmbgZap" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

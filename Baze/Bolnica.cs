@@ -19,6 +19,7 @@ namespace Baze
         {
             this.Zaposlenis = new HashSet<Zaposleni>();
             this.Pacijents = new HashSet<Pacijent>();
+            this.Direktors = new HashSet<Direktor>();
         }
     
         public decimal BolnicaId { get; set; }
@@ -27,9 +28,10 @@ namespace Baze
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Zaposleni> Zaposlenis { get; set; }
-        public virtual Direktor Direktor { get; set; }
         public virtual Grad Grad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pacijent> Pacijents { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Direktor> Direktors { get; set; }
     }
 }

@@ -15,20 +15,20 @@
         <Label Content="Jmbg doktora" HorizontalAlignment="Left" Margin="106,230,0,0" VerticalAlignment="Top" Width="118"/>
         <TextBox x:Name="ImeTextBox" HorizontalAlignment="Left" Height="23" Margin="390,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" />
         <TextBox x:Name="PrezimeTextBox" HorizontalAlignment="Left" Height="23" Margin="390,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" />
-        <ComboBox x:Name="PostanskiBrCombo" ItemsSource="{Binding Grad}" SelectedValuePath="PostanskiBr"  DisplayMemberPath="ImeZap" HorizontalAlignment="Left" Margin="390,152,0,0" VerticalAlignment="Top" Width="100"/>
-        <ComboBox x:Name="IdBolniceCombo" ItemsSource="{Binding Bolnica}" SelectedValuePath="BolnicaId"  DisplayMemberPath="NazivBolnice" HorizontalAlignment="Left" Margin="390,192,0,0" VerticalAlignment="Top" Width="100"/>
-        <ComboBox x:Name="JmbgDoktoraCombo" ItemsSource="{Binding Doktor}" SelectedValuePath="JmbgZap"  DisplayMemberPath="ImeZap" HorizontalAlignment="Left" Margin="390,230,0,0" VerticalAlignment="Top" Width="100"/>
+        <ComboBox x:Name="PostanskiBrCombo" ItemsSource="{Binding Gradovi}" SelectedValuePath="PostanskiBr"  DisplayMemberPath="Naziv" HorizontalAlignment="Left" Margin="390,152,0,0" VerticalAlignment="Top" Width="100"/>
+        <ComboBox x:Name="IdBolniceCombo" ItemsSource="{Binding Bolnice}" SelectedValuePath="BolnicaId"  DisplayMemberPath="NazivBolnice" HorizontalAlignment="Left" Margin="390,192,0,0" VerticalAlignment="Top" Width="100"/>
+        <ComboBox x:Name="JmbgDoktoraCombo" ItemsSource="{Binding Zaposlenis}" SelectedValuePath="JmbgZap"  DisplayMemberPath="ImeZap" HorizontalAlignment="Left" Margin="390,230,0,0" VerticalAlignment="Top" Width="100"/>
         <Button x:Name="ButtonSave" Content="Save" HorizontalAlignment="Left" Margin="563,25,0,0" VerticalAlignment="Top" Width="75" Click="ButtonSave_Click"/>
         <Button x:Name="ButtonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="689,25,0,0" VerticalAlignment="Top" Width="75" Click="ButtonCancel_Click"/>
 
-        <DataGrid x:Name="PacijentiList" HorizontalAlignment="Left" Height="141" Margin="85,261,0,0" VerticalAlignment="Top" Width="679">
+        <DataGrid x:Name="PacijentiList" HorizontalAlignment="Left" Height="141" Margin="85,261,0,0" VerticalAlignment="Top" Width="679" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="Jmbg" Header="Jmbg" Binding="{Binding JmbgPac}" Width="120"/>
                 <DataGridTextColumn x:Name="Ime" Header="Ime" Binding="{Binding ImePac}" Width="120"/>
                 <DataGridTextColumn x:Name="Prezime" Header="Prezime" Binding="{Binding PrezPac}" Width="120"/>
                 <DataGridTextColumn x:Name="GradPostanskiBr" Header="Postanski broj grada" Binding="{Binding GradPostanskiBr}" Width="120"/>
                 <DataGridTextColumn x:Name="BolnicaBolnicaId" Header="Id bolnice" Binding="{Binding BolnicaBolnicaId}" Width="120"/>
-                <DataGridTextColumn x:Name="DoktorIme" Header="Ime doktora" Binding="{Binding Doktor.JmbgZap}" Width="120"/>
+                <DataGridTextColumn x:Name="DoktorIme" Header="Ime doktora" Binding="{Binding Doktor.ImeZap}" Width="120"/>
 
                 <DataGridTemplateColumn Width="80">
                     <DataGridTemplateColumn.CellTemplate>

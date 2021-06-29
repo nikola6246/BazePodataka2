@@ -32,5 +32,7 @@ namespace Baze
         public virtual DbSet<Direktor> Direktors { get; set; }
         public virtual DbSet<Hospitalizovani> Hospitalizovanis { get; set; }
         public virtual DbSet<Pregleda> Pregledas { get; set; }
+        public virtual DbSet<Doktor> Doktors { get; set; }
+        public virtual DbSet<Sestra> Sestras { get; set; }
     }
 }

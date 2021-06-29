@@ -15,6 +15,7 @@
         <Button x:Name="Sestra" Content="Sestra" HorizontalAlignment="Left" Margin="320,122,0,0" VerticalAlignment="Top" Width="92" Height="33" Click="Sestra_Click"/>
         <Button x:Name="Specijalista" Content="Specijalista" HorizontalAlignment="Left" Margin="320,179,0,0" VerticalAlignment="Top" Width="92" Height="28" Click="Specijalista_Click" />
         <Button x:Name="Doktor" Content="Doktor" HorizontalAlignment="Left" Margin="320,227,0,0" VerticalAlignment="Top" Width="92" Height="28" Click="Doktor_Click" />
+        <Button x:Name="Hospitalizovan" Content="Hospitalizovan" HorizontalAlignment="Left" Margin="565,64,0,0" VerticalAlignment="Top" Width="75" Click="Hospitalizovan_Click"/>
 
     </Grid>
 </Window>

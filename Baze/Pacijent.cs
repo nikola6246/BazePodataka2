@@ -27,12 +27,13 @@ namespace Baze
         public int PregledaId { get; set; }
         public decimal GradPostanskiBr { get; set; }
         public decimal BolnicaBolnicaId { get; set; }
+        public decimal DoktorJmbgZap { get; set; }
     
-        public virtual Doktor Doktor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pregleda> Pregledas { get; set; }
         public virtual Grad Grad { get; set; }
         public virtual Bolnica Bolnica { get; set; }
+        public virtual Doktor Doktor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hospitalizovani> Hospitalizovanis { get; set; }
     }

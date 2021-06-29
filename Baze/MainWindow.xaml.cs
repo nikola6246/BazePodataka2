@@ -72,5 +72,11 @@ namespace Baze
             CrudOperations.Doktor doktorWindow = new CrudOperations.Doktor();
             doktorWindow.Show();
         }
+
+        private void Hospitalizovan_Click(object sender, RoutedEventArgs e)
+        {
+            CrudOperations.Hospitalizovan hospitalizovanWindow = new CrudOperations.Hospitalizovan();
+            hospitalizovanWindow.Show();
+        }
     }
 }

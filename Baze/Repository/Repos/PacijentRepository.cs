@@ -18,6 +18,7 @@ namespace Baze.Repository.Repos
         }
         public void AddPacijent(Pacijent pacijent)
         {
+            
             db.Pacijents.Add(pacijent);
             db.SaveChanges();
         }

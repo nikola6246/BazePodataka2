@@ -12,24 +12,24 @@
         <Label Content="Prezime" HorizontalAlignment="Left" Margin="50,108,0,0" VerticalAlignment="Top" Width="98"/>
         <Label Content="Plata" HorizontalAlignment="Left" Margin="50,152,0,0" VerticalAlignment="Top" Width="98"/>
         <Label Content="Godine Zaposlenja" HorizontalAlignment="Left" Margin="50,183,0,0" VerticalAlignment="Top" Width="121"/>
-        <Label Content="Pacijenti" HorizontalAlignment="Left" Margin="50,214,0,0" VerticalAlignment="Top" Width="98"/>
+        <!--<Label Content="Pacijenti" HorizontalAlignment="Left" Margin="50,214,0,0" VerticalAlignment="Top" Width="98"/>-->
         <Label Content="Id hospitalizovanog" HorizontalAlignment="Left" Margin="50,261,0,0" VerticalAlignment="Top" Width="121"/>
-        <TextBox x:Name="JmbgTextBox" HorizontalAlignment="Left" Height="23" Margin="225,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
+        <TextBox x:Name="JmbgTextBox" HorizontalAlignment="Left" Height="23" Margin="225,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"  />
         <TextBox x:Name="ImeTextBox" HorizontalAlignment="Left" Height="23" Margin="225,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="PrezimeTextBox" HorizontalAlignment="Left" Height="23" Margin="225,112,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="PlataTextBox" HorizontalAlignment="Left" Height="23" Margin="225,156,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="GodineTextBox" HorizontalAlignment="Left" Height="23" Margin="225,186,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="PacijentiTextBox" HorizontalAlignment="Left" Height="23" Margin="225,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <!--<TextBox x:Name="PacijentiTextBox" HorizontalAlignment="Left" Height="23" Margin="225,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>-->
         <ComboBox x:Name="IdHospitalizovanogCombo" ItemsSource="{Binding Hospitalizovani}" SelectedValuePath="Id" HorizontalAlignment="Left" Margin="225,261,0,0" VerticalAlignment="Top" Width="120"/>
 
-        <DataGrid x:Name="PacijentiList" HorizontalAlignment="Left" Height="141" Margin="10,292,-0.4,-13" VerticalAlignment="Top" Width="784">
+        <DataGrid x:Name="DoktoriList" HorizontalAlignment="Left" Height="141" Margin="10,292,-0.4,-13" VerticalAlignment="Top" Width="784">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="Jmbg" Header="Jmbg" Binding="{Binding JmbgZap}" Width="120"/>
                 <DataGridTextColumn x:Name="Ime" Header="Ime" Binding="{Binding ImeZap}" Width="120"/>
                 <DataGridTextColumn x:Name="Prezime" Header="Prezime" Binding="{Binding PrezZap}" Width="120"/>
                 <DataGridTextColumn x:Name="GradPostanskiBr" Header="Plata" Binding="{Binding PlataZap}" Width="120"/>
                 <DataGridTextColumn x:Name="GodineZaposlenja" Header="Godine zaposljenja" Binding="{Binding GodineZap}" Width="120"/>
-                <DataGridTextColumn x:Name="Pacijenti" Header="Pacijenti" Binding="{Binding Pacijents}" Width="120"/>
+                <!--<DataGridTextColumn x:Name="Pacijenti" Header="Pacijenti" Binding="{Binding Pacijents}" Width="120"/>-->
                 <DataGridTextColumn x:Name="Hospitalizovani" Header="Id hospitalizovanog" Binding="{Binding HospitalizovaniId}" Width="120"/>
 
                 <DataGridTemplateColumn Width="80">
@@ -49,6 +49,8 @@
 
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="ButtonSave" Content="Save" HorizontalAlignment="Left" Margin="542,30,0,0" VerticalAlignment="Top" Width="75" Click="ButtonSave_Click" />
+        <Button x:Name="ButtonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="670,28,0,0" VerticalAlignment="Top" Width="75" Click="ButtonCancel_Click"/>
 
 
     </Grid>

@@ -37,9 +37,9 @@ namespace Baze.Repository.Repos
             return db.Hospitalizovanis.Find(id) as Hospitalizovani;
         }
 
-        public IEnumerable<Grad> GetHospitalizovani()
+        public IEnumerable<Baze.Hospitalizovani> GetHospitalizovani()
         {
-            return (IEnumerable<Grad>)db.Hospitalizovanis;
+            return db.Hospitalizovanis;
         }
 
         public void UpdateHospitalizovan(Hospitalizovani hospitalizovan)

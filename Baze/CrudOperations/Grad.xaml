@@ -13,7 +13,7 @@
         <TextBox x:Name="NazivGradaTextBox" HorizontalAlignment="Left" Height="23" Margin="285,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="ButtonSave" Content="Save" HorizontalAlignment="Left" Margin="545,90,0,0" VerticalAlignment="Top" Width="75" Click="ButtonSave_Click"/>
         <Button x:Name ="ButtonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="672,90,0,0" VerticalAlignment="Top" Width="75" Click="ButtonCancel_Click"/>
-        <DataGrid x:Name="GradoviList" HorizontalAlignment="Left" Height="141" Margin="83,242,0,0" VerticalAlignment="Top" Width="664" >
+        <DataGrid x:Name="GradoviList" HorizontalAlignment="Left" Height="141" Margin="83,242,0,0" VerticalAlignment="Top" Width="664" AutoGenerateColumns="False">
         <DataGrid.Columns>
             <DataGridTextColumn x:Name="PostanskiBroj" Header="Postanski broj" Binding="{Binding PostanskiBr}" Width="120"/>
             <DataGridTextColumn x:Name="Naziv" Header="Naziv" Binding="{Binding Naziv}" Width="120"/>
@@ -32,8 +32,22 @@
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="BolniceUGradu" x:Name="BolniceUGradu" Click="BolniceUGradu_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="PacijentiUGradu" x:Name="PacijentiUGradu" Click="PacijentiUGradu_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-        </DataGrid.Columns>
+            </DataGrid.Columns>
         </DataGrid>
 
 

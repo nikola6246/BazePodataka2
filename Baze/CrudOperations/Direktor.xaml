@@ -14,7 +14,7 @@
         <TextBox x:Name="JmbgTextBox" HorizontalAlignment="Left" Height="23" Margin="270,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="ImeTextBox" HorizontalAlignment="Left" Height="23" Margin="270,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.016,0.449"/>
         <TextBox x:Name="PrezimeTextBox" HorizontalAlignment="Left" Height="23" Margin="270,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="IdBolniceCombo" ItemsSource="{Binding Bolnica}" SelectedValuePath="BolnicaId" HorizontalAlignment="Left" Margin="270,197,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="IdBolniceCombo" ItemsSource="{Binding Bolnice}" SelectedValuePath="BolnicaId" DisplayMemberPath="NazivBolnice" HorizontalAlignment="Left" Margin="270,197,0,0" VerticalAlignment="Top" Width="120"/>
 
         <DataGrid x:Name="DirektoriList" HorizontalAlignment="Left" Height="141" Margin="85,261,0,0" VerticalAlignment="Top" Width="664">
             <DataGrid.Columns>
@@ -40,8 +40,8 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="487,62,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="619,62,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="487,62,0,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click"/>
+        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="619,62,0,0" VerticalAlignment="Top" Width="75" Click="CancelButton_Click" />
 
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using Baze.Repository.Interfaces;
 using Baze.Repository.Repos;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,13 +24,30 @@ namespace Baze.CrudOperations
     public partial class Pacijent : Window
     {
         private IPacijent _repository;
+        private IGradRepository gradRepository;
+        private IBolnicaRepository bolnicaRepository;
+        private IDoktorRepository doktorRepository;
+        private IZaposleniRepository zaposleniRepository;
         private int editId = -1;
 
         public BindingList<Baze.Pacijent> Pacijenti;
+        public BindableCollection<Baze.Grad> Gradovi;
+        public BindableCollection<Baze.Bolnica> Bolnice;
+        public BindableCollection<Baze.Doktor> Doktori;
+        public BindableCollection<Baze.Zaposleni> Zaposlenovi;
         public Pacijent()
         {
-            _repository = new PacijentRepository();
             InitializeComponent();
+            _repository = new PacijentRepository();
+            gradRepository = new GradRepository();
+            bolnicaRepository = new BolnicaRepository();
+            zaposleniRepository = new ZaposleniRepository();
+            doktorRepository = new DoktorRepository();
+           
+            Gradovi = new BindableCollection<Baze.Grad>(gradRepository.GetGradovi());
+            Bolnice = new BindableCollection<Baze.Bolnica>(bolnicaRepository.GetBolnice());
+            //Doktori = new BindableCollection<Baze.Doktor>(doktorRepository.GetDoktor());
+            Zaposlenovi = new BindableCollection<Baze.Zaposleni>(zaposleniRepository.GetZaposleni());
 
             UcitajSvePacijente();
         }
@@ -39,6 +57,9 @@ namespace Baze.CrudOperations
         {
             Pacijenti = new BindingList<Baze.Pacijent>(_repository.GetPacijenti().ToList());
             PacijentiList.ItemsSource = Pacijenti;
+            PostanskiBrCombo.ItemsSource = Gradovi;
+            IdBolniceCombo.ItemsSource = Bolnice;
+            JmbgDoktoraCombo.ItemsSource = Zaposlenovi;
 
         }
 
@@ -55,7 +76,8 @@ namespace Baze.CrudOperations
                 PrezimeTextBox.Text = dev.PrezPac;
                 PostanskiBrCombo.SelectedItem = dev.GradPostanskiBr;
                 IdBolniceCombo.SelectedItem = dev.BolnicaBolnicaId;
-                JmbgDoktoraCombo.SelectedItem = dev.Doktor.JmbgZap;
+                //JmbgDoktoraCombo.SelectedItem = dev.Doktor.JmbgZap;
+                //JmbgDoktoraCombo.SelectedItem = dev.DoktorId;
 
 
 
@@ -87,10 +109,17 @@ namespace Baze.CrudOperations
                 pacijent.JmbgPac = Convert.ToInt32(JmbgTextBox.Text);
                 pacijent.ImePac = ImeTextBox.Text;
                 pacijent.PrezPac = PrezimeTextBox.Text;
-                //pacijent.Doktor. = ((Ugovor)UgovorComboBox.SelectedItem).UID;
-                pacijent.Doktor.JmbgZap = ((Baze.Doktor)JmbgDoktoraCombo.SelectedItem).JmbgZap;
-                pacijent.BolnicaBolnicaId = Convert.ToInt32((IdBolniceCombo.SelectedItem).ToString());
-                pacijent.GradPostanskiBr = Convert.ToInt32((PostanskiBrCombo.SelectedItem).ToString());
+
+                //pacijent.DoktorId = ((Baze.Zaposleni)JmbgDoktoraCombo.SelectedItem).JmbgZap;
+                pacijent.DoktorJmbgZap = ((Baze.Zaposleni)JmbgDoktoraCombo.SelectedItem).JmbgZap;
+                //Baze.Doktor doktor = new Baze.Doktor();
+                //doktor = doktorRepository.GetDoktorById(pacijent.DoktorId);
+                //pacijent.Doktor = doktor;
+                //pacijent.Doktor = doktorRepository.GetDoktorById(pacijent.DoktorId);
+                //pacijent.Doktor = (Baze.Doktor)zaposleniRepository.GetZaposlenById(pacijent.DoktorId);
+                //pacijent.Doktor = new Baze.Doktor();
+                pacijent.BolnicaBolnicaId = Convert.ToInt32(((Baze.Bolnica)IdBolniceCombo.SelectedItem).BolnicaId);
+                pacijent.GradPostanskiBr = Convert.ToInt32(((Baze.Grad)PostanskiBrCombo.SelectedItem).PostanskiBr);
                 _repository.AddPacijent(pacijent);
             }
             else 
@@ -99,10 +128,11 @@ namespace Baze.CrudOperations
                 pacijent.JmbgPac = Convert.ToInt32(JmbgTextBox.Text);
                 pacijent.ImePac = ImeTextBox.Text;
                 pacijent.PrezPac = PrezimeTextBox.Text;
-                //pacijent.Doktor. = ((Ugovor)UgovorComboBox.SelectedItem).UID;
-                pacijent.Doktor.JmbgZap = ((Baze.Doktor)JmbgDoktoraCombo.SelectedItem).JmbgZap;
-                pacijent.BolnicaBolnicaId = Convert.ToInt32((IdBolniceCombo.SelectedItem).ToString());
-                pacijent.GradPostanskiBr = Convert.ToInt32((PostanskiBrCombo.SelectedItem).ToString());
+                //pacijent.Doktor.JmbgZap = Convert.ToInt32((JmbgDoktoraCombo.SelectedItem).ToString());
+                //pacijent.DoktorId = ((Baze.Zaposleni)JmbgDoktoraCombo.SelectedItem).JmbgZap;
+                pacijent.DoktorJmbgZap = ((Baze.Zaposleni)JmbgDoktoraCombo.SelectedItem).JmbgZap;
+                pacijent.BolnicaBolnicaId = Convert.ToInt32(((Baze.Bolnica)IdBolniceCombo.SelectedItem).BolnicaId);
+                pacijent.GradPostanskiBr = Convert.ToInt32(((Baze.Grad)PostanskiBrCombo.SelectedItem).PostanskiBr);
                 _repository.UpdatePacijent(pacijent);
 
             }
@@ -123,7 +153,6 @@ namespace Baze.CrudOperations
             ImeTextBox.Text = String.Empty;
             PrezimeTextBox.Text = String.Empty;
             JmbgTextBox.Text = String.Empty;
-            //UgovorComboBox.SelectedItem = null;
             PostanskiBrCombo.SelectedItem = null;
             IdBolniceCombo.SelectedItem = null;
             JmbgDoktoraCombo.SelectedItem = null;

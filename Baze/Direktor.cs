@@ -17,6 +17,7 @@ namespace Baze
         public decimal JmbgDir { get; set; }
         public string ImeDir { get; set; }
         public string PrezDir { get; set; }
+        public decimal BolnicaBolnicaId { get; set; }
     
         public virtual Bolnica Bolnica { get; set; }
     }

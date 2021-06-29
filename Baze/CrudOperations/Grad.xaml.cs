@@ -4,6 +4,8 @@ using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +37,15 @@ namespace Baze.CrudOperations
             UcitajSveGradove();
         }
 
+        private void UcitajSveGradove()
+        {
+            Gradovi = new BindingList<Baze.Grad>(_repository.GetGradovi().ToList());
+            GradoviList.ItemsSource = Gradovi;
+            //DeveloperiList.ItemsSource = Developeri;
+            //UgovorComboBox.ItemsSource = Ugovori;
+
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -48,7 +59,7 @@ namespace Baze.CrudOperations
             {
                 PostanskiBrojTextBox.Text = dev.PostanskiBr.ToString();
                 NazivGradaTextBox.Text = dev.Naziv;
-                
+
                 this.editId = (int)dev.PostanskiBr;//??
             }
         }
@@ -88,14 +99,14 @@ namespace Baze.CrudOperations
                 grad.Naziv = naziv;
                 _repository.AddGrad(grad);
             }
-            else 
+            else
             {
                 grad = _repository.GetGradById(this.editId);
                 grad.PostanskiBr = id;
                 grad.Naziv = naziv;
                 _repository.UpdateGrad(grad);
             }
-            
+
 
             UcitajSveGradove();
             ClearForm();
@@ -107,16 +118,9 @@ namespace Baze.CrudOperations
             NazivGradaTextBox.Text = String.Empty;
         }
 
-        private void UcitajSveGradove() 
-        {
-            Gradovi = new BindingList<Baze.Grad>(_repository.GetGradovi().ToList());
-            GradoviList.ItemsSource = Gradovi;
-            //DeveloperiList.ItemsSource = Developeri;
-            //UgovorComboBox.ItemsSource = Ugovori;
 
-        }
 
-        private bool ValidiranjeForme() 
+        private bool ValidiranjeForme()
         {
             string alertText = String.Empty;
             Baze.Grad grad = new Baze.Grad();
@@ -144,5 +148,88 @@ namespace Baze.CrudOperations
             return true;
         }
 
+        private void BolniceUGradu_Click(object sender, RoutedEventArgs e)
+        {
+            Baze.Grad g = ((FrameworkElement)sender).DataContext as Baze.Grad;
+            if (g != null)
+            {
+
+                var conString = ConfigurationManager.ConnectionStrings["Model1Container"].ConnectionString;
+                if (conString.ToLower().StartsWith("metadata="))
+                {
+                    System.Data.Entity.Core.EntityClient.EntityConnectionStringBuilder efBuilder = new System.Data.Entity.Core.EntityClient.EntityConnectionStringBuilder(conString);
+                    conString = efBuilder.ProviderConnectionString;
+                }
+
+                int ukupnoBolnica = 0;
+
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    using (SqlCommand com = new SqlCommand("BolniceUGradu", con))
+                    {
+                        com.CommandType = System.Data.CommandType.StoredProcedure;
+                        com.Parameters.Add("@pb", System.Data.SqlDbType.Int).Value = g.PostanskiBr;
+                        com.Parameters.Add("@UkupnoBolnica", System.Data.SqlDbType.Int);
+                        com.Parameters["@UkupnoBolnica"].Direction = System.Data.ParameterDirection.Output;
+
+                        try
+                        {
+                            con.Open();
+                            com.ExecuteNonQuery();
+
+                            ukupnoBolnica = (Int32)com.Parameters["@UkupnoBolnica"].Value;
+                            MessageBox.Show(String.Format("Ukupno bolnica: {0} .", ukupnoBolnica), "Uspesno", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Neka greska se desila", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+
+                    }
+                }
+            }
+        }
+
+        private void PacijentiUGradu_Click(object sender, RoutedEventArgs e)
+        {
+            Baze.Grad g = ((FrameworkElement)sender).DataContext as Baze.Grad;
+            if (g != null)
+            {
+
+                var conString = ConfigurationManager.ConnectionStrings["Model1Container"].ConnectionString;
+                if (conString.ToLower().StartsWith("metadata="))
+                {
+                    System.Data.Entity.Core.EntityClient.EntityConnectionStringBuilder efBuilder = new System.Data.Entity.Core.EntityClient.EntityConnectionStringBuilder(conString);
+                    conString = efBuilder.ProviderConnectionString;
+                }
+
+                int ukupnoPacijenata = 0;
+
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    using (SqlCommand com = new SqlCommand("PacijentiUGradu", con))
+                    {
+                        com.CommandType = System.Data.CommandType.StoredProcedure;
+                        com.Parameters.Add("@pb", System.Data.SqlDbType.Int).Value = g.PostanskiBr;
+                        com.Parameters.Add("@ukupnoPacijenata", System.Data.SqlDbType.Int);
+                        com.Parameters["@ukupnoPacijenata"].Direction = System.Data.ParameterDirection.Output;
+
+                        try
+                        {
+                            con.Open();
+                            com.ExecuteNonQuery();
+
+                            ukupnoPacijenata = (Int32)com.Parameters["@ukupnoPacijenata"].Value;
+                            MessageBox.Show(String.Format("Ukupno pacijenata: {0} .", ukupnoPacijenata), "Uspesno", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Neka greska se desila", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+
+                    }
+                }
+            }
+        }
     }
 }

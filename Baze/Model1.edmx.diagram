@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="Model1.Bolnica" Width="1.5" PointX="8.125" PointY="5.375" />
         <EntityTypeShape EntityType="Model1.Direktor" Width="1.5" PointX="8.25" PointY="8.375" />
         <AssociationConnector Association="Model1.ZaposleniBolnica" />
-        <AssociationConnector Association="Model1.BolnicaDirektor" />
         <EntityTypeShape EntityType="Model1.Spremacica" Width="1.5" PointX="0.5" PointY="8.375" />
         <InheritanceConnector EntityType="Model1.Spremacica" />
         <EntityTypeShape EntityType="Model1.Sestra" Width="1.5" PointX="2.25" PointY="8.375" />
@@ -23,11 +22,12 @@
         <AssociationConnector Association="Model1.GradBolnica" />
         <EntityTypeShape EntityType="Model1.Hospitalizovani" Width="1.5" PointX="4.5" PointY="2" />
         <EntityTypeShape EntityType="Model1.Pregleda" Width="1.5" PointX="10.5" PointY="3.125" />
-        <AssociationConnector Association="Model1.PacijentDoktor" />
         <AssociationConnector Association="Model1.PacijentPregleda" />
         <AssociationConnector Association="Model1.SpecijalistaPregleda" />
         <AssociationConnector Association="Model1.GradPacijent" />
         <AssociationConnector Association="Model1.BolnicaPacijent" />
+        <AssociationConnector Association="Model1.DoktorPacijent" />
+        <AssociationConnector Association="Model1.DirektorBolnica" />
         <AssociationConnector Association="Model1.HospitalizovaniPacijent" />
         <AssociationConnector Association="Model1.HospitalizovaniSestra" />
       </Diagram>

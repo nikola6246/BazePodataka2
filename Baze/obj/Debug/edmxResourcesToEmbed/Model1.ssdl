@@ -8,8 +8,8 @@
     <EntitySet Name="Direktors" EntityType="Model1.Store.Direktors" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Hospitalizovanis" EntityType="Model1.Store.Hospitalizovanis" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Pregledas" EntityType="Model1.Store.Pregledas" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Zaposlenis_Doktor" EntityType="Model1.Store.Zaposlenis_Doktor" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Zaposlenis_Specijalista" EntityType="Model1.Store.Zaposlenis_Specijalista" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Zaposlenis_Doktor" EntityType="Model1.Store.Zaposlenis_Doktor" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Zaposlenis_Sestra" EntityType="Model1.Store.Zaposlenis_Sestra" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Zaposlenis_Spremacica" EntityType="Model1.Store.Zaposlenis_Spremacica" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ZaposleniBolnica" EntityType="Model1.Store.ZaposleniBolnica" store:Type="Tables" Schema="dbo" />
@@ -21,17 +21,9 @@
       <End Role="Bolnica" EntitySet="Bolnicas" />
       <End Role="ZaposleniBolnica" EntitySet="ZaposleniBolnica" />
     </AssociationSet>
-    <AssociationSet Name="BolnicaDirektor" Association="Model1.Store.BolnicaDirektor">
-      <End Role="Bolnica" EntitySet="Bolnicas" />
-      <End Role="Direktor" EntitySet="Direktors" />
-    </AssociationSet>
     <AssociationSet Name="GradBolnica" Association="Model1.Store.GradBolnica">
       <End Role="Grad" EntitySet="Grads" />
       <End Role="Bolnica" EntitySet="Bolnicas" />
-    </AssociationSet>
-    <AssociationSet Name="PacijentDoktor" Association="Model1.Store.PacijentDoktor">
-      <End Role="Pacijent" EntitySet="Pacijents" />
-      <End Role="Doktor" EntitySet="Zaposlenis_Doktor" />
     </AssociationSet>
     <AssociationSet Name="PacijentPregleda" Association="Model1.Store.PacijentPregleda">
       <End Role="Pacijent" EntitySet="Pacijents" />
@@ -49,6 +41,14 @@
       <End Role="Bolnica" EntitySet="Bolnicas" />
       <End Role="Pacijent" EntitySet="Pacijents" />
     </AssociationSet>
+    <AssociationSet Name="DoktorPacijent" Association="Model1.Store.DoktorPacijent">
+      <End Role="Doktor" EntitySet="Zaposlenis_Doktor" />
+      <End Role="Pacijent" EntitySet="Pacijents" />
+    </AssociationSet>
+    <AssociationSet Name="DirektorBolnica" Association="Model1.Store.DirektorBolnica">
+      <End Role="Direktor" EntitySet="Direktors" />
+      <End Role="Bolnica" EntitySet="Bolnicas" />
+    </AssociationSet>
     <AssociationSet Name="HospitalizovaniPacijent" Association="Model1.Store.HospitalizovaniPacijent">
       <End Role="Hospitalizovani" EntitySet="Hospitalizovanis" />
       <End Role="Pacijent" EntitySet="Pacijents" />
@@ -57,13 +57,13 @@
       <End Role="Hospitalizovani" EntitySet="Hospitalizovanis" />
       <End Role="Sestra" EntitySet="Zaposlenis_Sestra" />
     </AssociationSet>
-    <AssociationSet Name="FK_Doktor_inherits_Zaposleni" Association="Model1.Store.FK_Doktor_inherits_Zaposleni">
-      <End Role="Zaposleni" EntitySet="Zaposlenis" />
-      <End Role="Doktor" EntitySet="Zaposlenis_Doktor" />
-    </AssociationSet>
     <AssociationSet Name="FK_Specijalista_inherits_Zaposleni" Association="Model1.Store.FK_Specijalista_inherits_Zaposleni">
       <End Role="Zaposleni" EntitySet="Zaposlenis" />
       <End Role="Specijalista" EntitySet="Zaposlenis_Specijalista" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Doktor_inherits_Zaposleni" Association="Model1.Store.FK_Doktor_inherits_Zaposleni">
+      <End Role="Zaposleni" EntitySet="Zaposlenis" />
+      <End Role="Doktor" EntitySet="Zaposlenis_Doktor" />
     </AssociationSet>
     <AssociationSet Name="FK_Sestra_inherits_Zaposleni" Association="Model1.Store.FK_Sestra_inherits_Zaposleni">
       <End Role="Zaposleni" EntitySet="Zaposlenis" />
@@ -78,26 +78,26 @@
     <Key>
       <PropertyRef Name="PostanskiBr" />
     </Key>
-    <Property Name="PostanskiBr" Type="decimal" Nullable="false" />
+    <Property Name="PostanskiBr" Type="decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Pacijents">
     <Key>
       <PropertyRef Name="JmbgPac" />
     </Key>
-    <Property Name="JmbgPac" Type="decimal" Nullable="false" />
+    <Property Name="JmbgPac" Type="decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="ImePac" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PrezPac" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PregledaId" Type="int" Nullable="false" />
-    <Property Name="GradPostanskiBr" Type="decimal" Nullable="false" />
-    <Property Name="BolnicaBolnicaId" Type="decimal" Nullable="false" />
-    <Property Name="Doktor_JmbgZap" Type="decimal" Nullable="false" />
+    <Property Name="GradPostanskiBr" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="BolnicaBolnicaId" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="DoktorJmbgZap" Type="decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Zaposlenis">
     <Key>
       <PropertyRef Name="JmbgZap" />
     </Key>
-    <Property Name="JmbgZap" Type="decimal" Nullable="false" />
+    <Property Name="JmbgZap" Type="decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="ImeZap" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PrezZap" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PlataZap" Type="nvarchar(max)" Nullable="false" />
@@ -107,42 +107,36 @@
     <Key>
       <PropertyRef Name="BolnicaId" />
     </Key>
-    <Property Name="BolnicaId" Type="decimal" Nullable="false" />
+    <Property Name="BolnicaId" Type="decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="NazivBolnice" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="GradPostanskiBr" Type="decimal" Nullable="false" />
+    <Property Name="GradPostanskiBr" Type="decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Direktors">
     <Key>
       <PropertyRef Name="JmbgDir" />
     </Key>
-    <Property Name="JmbgDir" Type="decimal" Nullable="false" />
+    <Property Name="JmbgDir" Type="decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="ImeDir" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PrezDir" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Bolnica_BolnicaId" Type="decimal" Nullable="false" />
+    <Property Name="BolnicaBolnicaId" Type="decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Hospitalizovanis">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="decimal" Nullable="false" />
+    <Property Name="Id" Type="decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="Dijagnoza" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Pacijent_JmbgPac" Type="decimal" Nullable="false" />
-    <Property Name="Sestra_JmbgZap" Type="decimal" Nullable="false" />
+    <Property Name="PacijentJmbgPac" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="SestraJmbgZap" Type="decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Pregledas">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PacijentJmbgPac" Type="decimal" Nullable="false" />
-    <Property Name="SpecijalistaJmbgZap" Type="decimal" Nullable="false" />
+    <Property Name="PacijentJmbgPac" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="SpecijalistaJmbgZap" Type="decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="Anamneza" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Zaposlenis_Doktor">
-    <Key>
-      <PropertyRef Name="JmbgZap" />
-    </Key>
-    <Property Name="JmbgZap" Type="decimal" Nullable="false" />
   </EntityType>
   <EntityType Name="Zaposlenis_Specijalista">
     <Key>
@@ -150,7 +144,13 @@
     </Key>
     <Property Name="Oblast_Spec" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PregledaId" Type="int" Nullable="false" />
-    <Property Name="JmbgZap" Type="decimal" Nullable="false" />
+    <Property Name="JmbgZap" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Zaposlenis_Doktor">
+    <Key>
+      <PropertyRef Name="JmbgZap" />
+    </Key>
+    <Property Name="JmbgZap" Type="decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Zaposlenis_Sestra">
     <Key>
@@ -158,35 +158,23 @@
     </Key>
     <Property Name="brojDezurstava" Type="nvarchar(max)" Nullable="false" />
     <Property Name="HospitalizovaniId" Type="int" Nullable="false" />
-    <Property Name="JmbgZap" Type="decimal" Nullable="false" />
+    <Property Name="JmbgZap" Type="decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Zaposlenis_Spremacica">
     <Key>
       <PropertyRef Name="JmbgZap" />
     </Key>
     <Property Name="brojCiscenja" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="JmbgZap" Type="decimal" Nullable="false" />
+    <Property Name="JmbgZap" Type="decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="ZaposleniBolnica">
     <Key>
       <PropertyRef Name="Zaposlenis_JmbgZap" />
       <PropertyRef Name="Bolnicas_BolnicaId" />
     </Key>
-    <Property Name="Zaposlenis_JmbgZap" Type="decimal" Nullable="false" />
-    <Property Name="Bolnicas_BolnicaId" Type="decimal" Nullable="false" />
+    <Property Name="Zaposlenis_JmbgZap" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Bolnicas_BolnicaId" Type="decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
-  <Association Name="BolnicaDirektor">
-    <End Role="Bolnica" Type="Model1.Store.Bolnicas" Multiplicity="1" />
-    <End Role="Direktor" Type="Model1.Store.Direktors" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Bolnica">
-        <PropertyRef Name="BolnicaId" />
-      </Principal>
-      <Dependent Role="Direktor">
-        <PropertyRef Name="Bolnica_BolnicaId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="GradBolnica">
     <End Role="Grad" Type="Model1.Store.Grads" Multiplicity="1" />
     <End Role="Bolnica" Type="Model1.Store.Bolnicas" Multiplicity="*" />
@@ -196,18 +184,6 @@
       </Principal>
       <Dependent Role="Bolnica">
         <PropertyRef Name="GradPostanskiBr" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PacijentDoktor">
-    <End Role="Pacijent" Type="Model1.Store.Pacijents" Multiplicity="*" />
-    <End Role="Doktor" Type="Model1.Store.Zaposlenis_Doktor" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Doktor">
-        <PropertyRef Name="JmbgZap" />
-      </Principal>
-      <Dependent Role="Pacijent">
-        <PropertyRef Name="Doktor_JmbgZap" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -259,6 +235,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="DoktorPacijent">
+    <End Role="Doktor" Type="Model1.Store.Zaposlenis_Doktor" Multiplicity="1" />
+    <End Role="Pacijent" Type="Model1.Store.Pacijents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doktor">
+        <PropertyRef Name="JmbgZap" />
+      </Principal>
+      <Dependent Role="Pacijent">
+        <PropertyRef Name="DoktorJmbgZap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DirektorBolnica">
+    <End Role="Direktor" Type="Model1.Store.Direktors" Multiplicity="*" />
+    <End Role="Bolnica" Type="Model1.Store.Bolnicas" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Bolnica">
+        <PropertyRef Name="BolnicaId" />
+      </Principal>
+      <Dependent Role="Direktor">
+        <PropertyRef Name="BolnicaBolnicaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="HospitalizovaniPacijent">
     <End Role="Hospitalizovani" Type="Model1.Store.Hospitalizovanis" Multiplicity="*" />
     <End Role="Pacijent" Type="Model1.Store.Pacijents" Multiplicity="1" />
@@ -267,7 +267,7 @@
         <PropertyRef Name="JmbgPac" />
       </Principal>
       <Dependent Role="Hospitalizovani">
-        <PropertyRef Name="Pacijent_JmbgPac" />
+        <PropertyRef Name="PacijentJmbgPac" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -279,7 +279,7 @@
         <PropertyRef Name="JmbgZap" />
       </Principal>
       <Dependent Role="Hospitalizovani">
-        <PropertyRef Name="Sestra_JmbgZap" />
+        <PropertyRef Name="SestraJmbgZap" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -307,20 +307,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Doktor_inherits_Zaposleni">
-    <End Role="Zaposleni" Type="Model1.Store.Zaposlenis" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Doktor" Type="Model1.Store.Zaposlenis_Doktor" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Zaposleni">
-        <PropertyRef Name="JmbgZap" />
-      </Principal>
-      <Dependent Role="Doktor">
-        <PropertyRef Name="JmbgZap" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Specijalista_inherits_Zaposleni">
     <End Role="Zaposleni" Type="Model1.Store.Zaposlenis" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -331,6 +317,20 @@
         <PropertyRef Name="JmbgZap" />
       </Principal>
       <Dependent Role="Specijalista">
+        <PropertyRef Name="JmbgZap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Doktor_inherits_Zaposleni">
+    <End Role="Zaposleni" Type="Model1.Store.Zaposlenis" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Doktor" Type="Model1.Store.Zaposlenis_Doktor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Zaposleni">
+        <PropertyRef Name="JmbgZap" />
+      </Principal>
+      <Dependent Role="Doktor">
         <PropertyRef Name="JmbgZap" />
       </Dependent>
     </ReferentialConstraint>

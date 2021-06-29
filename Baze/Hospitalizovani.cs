@@ -16,6 +16,8 @@ namespace Baze
     {
         public decimal Id { get; set; }
         public string Dijagnoza { get; set; }
+        public decimal PacijentJmbgPac { get; set; }
+        public decimal SestraJmbgZap { get; set; }
     
         public virtual Pacijent Pacijent { get; set; }
         public virtual Sestra Sestra { get; set; }

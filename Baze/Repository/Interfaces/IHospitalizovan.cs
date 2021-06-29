@@ -8,7 +8,7 @@ namespace Baze.Repository.Interfaces
 {
     public interface IHospitalizovan
     {
-        IEnumerable<Grad> GetHospitalizovani();
+        IEnumerable<Hospitalizovani> GetHospitalizovani();
 
         Hospitalizovani GetHospitalizovanById(int id);
 
