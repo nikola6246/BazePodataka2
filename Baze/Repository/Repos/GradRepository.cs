@@ -20,7 +20,17 @@ namespace Baze.Repository.Repos
         public void AddGrad(Grad grad)
         {
             db.Grads.Add(grad);
-            db.SaveChanges();
+            try
+            {
+                
+                db.SaveChanges();
+
+            }
+            catch (DBConcurrencyException ce)
+            {
+                Trace.TraceInformation(ce.Message);
+            }
+            
         }
 
         public void DeleteGrad(Grad grad)
